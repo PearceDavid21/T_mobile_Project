@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.tobysoft.originhub.viewmodel.RepositoryViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgUserAvatar"
+            android:layout_width="@dimen/repo_user_img_size"
+            android:layout_height="@dimen/repo_user_img_size"
+            android:scaleType="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvUserName"/>
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.userName}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgUserAvatar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvEmail"/>
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.userEmail}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgUserAvatar"
+            app:layout_constraintTop_toBottomOf="@id/tvUserName"
+            app:layout_constraintBottom_toTopOf="@id/tvLocation"/>
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.userLocation}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgUserAvatar"
+            app:layout_constraintTop_toBottomOf="@id/tvEmail"
+            app:layout_constraintBottom_toTopOf="@id/tvJoinDate"/>
+
+        <TextView
+            android:id="@+id/tvJoinDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.joinDate}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgUserAvatar"
+            app:layout_constraintTop_toBottomOf="@id/tvLocation"
+            app:layout_constraintBottom_toTopOf="@id/tvFollowers"/>
+
+        <TextView
+            android:id="@+id/tvFollowers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.followersCount}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgUserAvatar"
+            app:layout_constraintTop_toBottomOf="@id/tvJoinDate"
+            app:layout_constraintBottom_toTopOf="@id/tvFollowing"/>
+
+        <TextView
+            android:id="@+id/tvFollowing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.followingCount}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgUserAvatar"
+            app:layout_constraintTop_toBottomOf="@id/tvFollowers"
+            app:layout_constraintBottom_toTopOf="@id/tvUserBio"/>
+
+        <TextView
+            android:id="@+id/tvUserBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.userBio}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgUserAvatar"
+            app:layout_constraintBottom_toTopOf="@id/etRepositorySearchInput"/>
+
+        <EditText
+            android:id="@+id/etRepositorySearchInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/repo_search_text"
+            android:onTextChanged="@{viewmodel::onRepositoryFilteringTextChanged}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUserBio"
+            app:layout_constraintBottom_toTopOf="@id/rvUserRepositoryList"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvUserRepositoryList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etRepositorySearchInput"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
